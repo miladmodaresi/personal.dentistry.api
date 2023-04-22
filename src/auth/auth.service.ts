@@ -4,6 +4,7 @@ import { SignUpAuthDto } from './dto/sign-up-auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/management/users/entities/user.entity';
+import { JwtPayloadDto } from './dto/payload.dto';
 @Injectable()
 export class AuthService {
   constructor(private jwtService: JwtService) {}
@@ -13,8 +14,9 @@ export class AuthService {
     });
     const validate = await user.validatePassword(signInAuthDto.password);
     if (!validate) throw new UnauthorizedException('wrong password');
-
-    const accesstoken = await this.jwtService.sign({ user: user.name });
+    
+    const payload: JwtPayloadDto = { name: user.name };
+    const accesstoken = await this.jwtService.sign(payload);
     return { accesstoken };
   }
 

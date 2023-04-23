@@ -14,8 +14,8 @@ export class AuthService {
     });
     const validate = await user.validatePassword(signInAuthDto.password);
     if (!validate) throw new UnauthorizedException('wrong password');
-    
-    const payload: JwtPayloadDto = { name: user.name };
+
+    const payload: JwtPayloadDto = { id: user.id };
     const accesstoken = await this.jwtService.sign(payload);
     return { accesstoken };
   }
@@ -25,6 +25,7 @@ export class AuthService {
     user.name = signUpAuthDto.name;
     user.username = signUpAuthDto.username;
     user.family = signUpAuthDto.family;
+    user.role = 'user';
     user.salt = await bcrypt.genSalt();
     user.password = await bcrypt.hash(signUpAuthDto.password, user.salt);
 

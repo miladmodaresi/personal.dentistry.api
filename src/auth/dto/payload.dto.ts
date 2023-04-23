@@ -1,3 +1,3 @@
 export interface JwtPayloadDto {
-  name: string;
+  id: number;
 }

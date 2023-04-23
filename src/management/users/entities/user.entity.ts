@@ -28,6 +28,9 @@ export class User extends BaseEntity {
   @Column()
   salt: string;
 
+  @Column()
+  role: string;
+
   @OneToMany((type) => Task, (task) => task.user, { eager: true })
   tasks: Task[];
 

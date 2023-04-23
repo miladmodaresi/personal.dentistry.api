@@ -13,9 +13,11 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/user.decorator';
+import { AdminRoleGuard } from 'src/auth/admin-role.guard';
 
-@Controller('tasks')
+@Controller('dentistry/tasks')
 @UseGuards(AuthGuard())
+@UseGuards(AdminRoleGuard)
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 

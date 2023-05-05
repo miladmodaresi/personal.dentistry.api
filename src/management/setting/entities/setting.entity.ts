@@ -1,6 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-export class Setting {
+@Entity()
+export class Setting extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

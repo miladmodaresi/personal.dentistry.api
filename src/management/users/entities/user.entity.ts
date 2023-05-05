@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -31,8 +32,17 @@ export class User extends BaseEntity {
   @Column()
   role: string;
 
+  @Column()
+  type: number;
+
   @OneToMany((type) => Task, (task) => task.user, { eager: true })
   tasks: Task[];
+
+  @CreateDateColumn()
+  createdAt: string;
+
+  @CreateDateColumn()
+  updateAt: string;
 
   async validatePassword(password: string): Promise<boolean> {
     console.log(this.salt);

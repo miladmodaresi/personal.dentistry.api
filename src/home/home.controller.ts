@@ -1,25 +1,18 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { HomeService } from './home.service';
-import { CreateHomeDto } from './dto/create-home.dto';
-import { UpdateHomeDto } from './dto/update-home.dto';
+import { User } from 'src/management/users/entities/user.entity';
 
 @Controller('home')
 export class HomeController {
   constructor(private readonly homeService: HomeService) {}
 
   @Get()
-  GetHome() {
+  GetHome(): {
+    doctors: Promise<User[]>;
+  } {
     return this.homeService.home();
   }
-  @Get('layout')
+  @Get('settings')
   GetLayout() {
     return this.homeService.layout();
   }

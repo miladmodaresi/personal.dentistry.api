@@ -25,6 +25,7 @@ export class AuthService {
     user.name = signUpAuthDto.name;
     user.username = signUpAuthDto.username;
     user.family = signUpAuthDto.family;
+    user.type = signUpAuthDto.type;
     user.role = 'user';
     user.salt = await bcrypt.genSalt();
     user.password = await bcrypt.hash(signUpAuthDto.password, user.salt);

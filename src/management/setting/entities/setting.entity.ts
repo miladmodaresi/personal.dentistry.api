@@ -8,6 +8,9 @@ export class Setting extends BaseEntity {
   @Column({ nullable: true })
   slug: string;
 
+  @Column({ nullable: true })
+  name: string;
+
   @Column({ nullable: true, type: 'longtext' })
   value: string;
 }

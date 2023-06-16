@@ -3,10 +3,14 @@ import { CreateSliderDto } from './dto/create-slider.dto';
 import { UpdateSliderDto } from './dto/update-slider.dto';
 import { Slider } from './entities/slider.entity';
 import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class SliderService {
-  constructor(private readonly sliderRepository: Repository<Slider>) {}
+  constructor(
+    @InjectRepository(Slider)
+    private readonly sliderRepository: Repository<Slider>,
+  ) {}
   create(createSliderDto: CreateSliderDto) {
     return 'This action adds a new slider';
   }

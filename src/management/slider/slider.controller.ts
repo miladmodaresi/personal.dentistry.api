@@ -1,13 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SliderService } from './slider.service';
 import { CreateSliderDto } from './dto/create-slider.dto';
 import { UpdateSliderDto } from './dto/update-slider.dto';
+import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller('slider')
 export class SliderController {
   constructor(private readonly sliderService: SliderService) {}
 
   @Post()
+  @FormDataRequest()
   create(@Body() createSliderDto: CreateSliderDto) {
     return this.sliderService.create(createSliderDto);
   }

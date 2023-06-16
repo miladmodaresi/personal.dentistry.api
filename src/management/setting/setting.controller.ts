@@ -14,13 +14,13 @@ import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller('settings')
 export class SettingController {
-  // constructor(private readonly settingService: SettingService) {}
+  constructor(private readonly settingService: SettingService) {}
 
   @Post()
   @FormDataRequest()
   create(@Body() createSettingDto: CreateSettingDto) {
     // console.log(createSettingDto.file.Store());
-    // return this.settingService.create(createSettingDto);
+    return this.settingService.create(createSettingDto);
   }
 
   @Get()

@@ -3,13 +3,18 @@ import { CreateSettingDto } from './dto/create-setting.dto';
 import { UpdateSettingDto } from './dto/update-setting.dto';
 import { Repository } from 'typeorm';
 import { Setting } from './entities/setting.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class SettingService {
-  constructor(private readonly settingRepository: Repository<Setting>) {}
+  constructor(
+    @InjectRepository(Setting)
+    private readonly settingRepository: Repository<Setting>,
+  ) {}
 
-  create(createSettingDto: CreateSettingDto) {
-    return 'create';
+  create({ slug, name, value }: CreateSettingDto) {
+    const setting = this.settingRepository.create({ slug, name, value });
+    return setting;
   }
 
   findAll() {

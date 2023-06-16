@@ -7,10 +7,11 @@ import { Setting } from './entities/setting.entity';
 
 @Module({
   imports: [
-    NestjsFormDataModule.config({ storage: MemoryStoredFile }),
     TypeOrmModule.forFeature([Setting]),
+    NestjsFormDataModule.config({ storage: MemoryStoredFile }),
   ],
   controllers: [SettingController],
   providers: [SettingService],
+  exports: [SettingService, TypeOrmModule],
 })
 export class SettingModule {}

@@ -1,1 +1,3 @@
-export class CreateSliderDto {}
+export class CreateSliderDto {
+  title: string;
+}

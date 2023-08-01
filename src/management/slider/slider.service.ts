@@ -11,8 +11,9 @@ export class SliderService {
     @InjectRepository(Slider)
     private readonly sliderRepository: Repository<Slider>,
   ) {}
-  create(createSliderDto: CreateSliderDto) {
-    return 'This action adds a new slider';
+  create(file: Express.Multer.File, input: CreateSliderDto) {
+    const data = { path: 'img/' + file.filename, ...input };
+    return this.sliderRepository.create(data).save();
   }
 
   findAll(): Promise<Slider[]> {
@@ -20,7 +21,9 @@ export class SliderService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} slider`;
+    return this.sliderRepository.findOneBy({
+      id,
+    });
   }
 
   update(id: number, updateSliderDto: UpdateSliderDto) {

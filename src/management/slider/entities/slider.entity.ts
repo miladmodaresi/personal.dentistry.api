@@ -12,5 +12,8 @@ export class Slider extends BaseEntity {
   path: string;
 
   @Column()
+  description: string;
+
+  @Column()
   link: string;
 }

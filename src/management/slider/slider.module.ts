@@ -4,13 +4,13 @@ import { SliderController } from './slider.controller';
 import { AuthModule } from 'src/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Slider } from './entities/slider.entity';
-import { MemoryStoredFile, NestjsFormDataModule } from 'nestjs-form-data';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   controllers: [SliderController],
   providers: [SliderService],
   imports: [
-    NestjsFormDataModule.config({ storage: MemoryStoredFile }),
+    MulterModule.register({ dest: 'public/img' }),
     AuthModule,
     TypeOrmModule.forFeature([Slider]),
   ],
